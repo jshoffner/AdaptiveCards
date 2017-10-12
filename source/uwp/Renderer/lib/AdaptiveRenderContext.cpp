@@ -9,6 +9,7 @@ using namespace Microsoft::WRL;
 using namespace Microsoft::WRL::Wrappers;
 using namespace ABI::AdaptiveCards::Uwp;
 using namespace ABI::Windows::Foundation;
+using namespace ABI::Windows::UI::Xaml;
 
 namespace AdaptiveCards { namespace Uwp
 {
@@ -31,21 +32,43 @@ namespace AdaptiveCards { namespace Uwp
     _Use_decl_annotations_
     HRESULT AdaptiveRenderContext::get_HostConfig(IAdaptiveHostConfig** value)
     {
-        value = &m_hostConfig;
-        return S_OK;
+        return m_hostConfig.CopyTo(value);
     }
 
     _Use_decl_annotations_
     HRESULT AdaptiveRenderContext::get_ElementRenderers(IAdaptiveElementRendererRegistration** value)
     {
-        value = &m_elementRendererRegistration;
-        return S_OK;
+        return m_elementRendererRegistration.CopyTo(value);
     }
 
     _Use_decl_annotations_
-    HRESULT AdaptiveRenderContext::get_ActionRenderers(IAdaptiveActionRendererRegistration** value)
+    HRESULT AdaptiveRenderContext::get_ActionInvoker(IAdaptiveActionInvoker** value)
     {
-        value = &m_actionRendererRegistration;
+        return m_actionInvoker.CopyTo(value);
+    }
+
+    _Use_decl_annotations_
+    HRESULT AdaptiveRenderContext::AddInputItem(IAdaptiveCardElement* cardElement, ABI::Windows::UI::Xaml::IUIElement* uiElement)
+    {
+        ComPtr<IAdaptiveCardElement> localCardElement(cardElement);
+        ComPtr<IAdaptiveInputElement> inputElement;
+        THROW_IF_FAILED(localCardElement.As(&inputElement));
+
+        ComPtr<IUIElement> localUiElement(uiElement);
+
+        InputItem item(inputElement.Get(), localUiElement.Get());
+
+        auto inputItems = m_renderResult->GetInputItems();
+
+        if (inputItems != nullptr)
+        {
+            inputItems->push_back(item);
+        }
+        else
+        {
+            // Add to Errors
+        }
+
         return S_OK;
     }
 }}
