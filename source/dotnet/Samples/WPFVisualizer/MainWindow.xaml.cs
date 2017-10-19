@@ -50,10 +50,8 @@ namespace WpfVisualizer
                 });
             }
 
-            Renderer = new AdaptiveCardRenderer()
-            {
-                Resources = Resources
-            };
+            Renderer = new AdaptiveCardRenderer();
+            Renderer.Resources = Resources;
             Renderer.UseXceedElementRenderers();
         }
 
@@ -77,7 +75,7 @@ namespace WpfVisualizer
                     var result = AdaptiveCard.FromJson(textBox.Text);
                     if (result.Card != null)
                         _card = result.Card;
-                    
+
 
                     cardGrid.Children.Clear();
                     if (_card != null)
@@ -167,7 +165,7 @@ namespace WpfVisualizer
 
         private void _onAction(object sender, AdaptiveActionEventArgs e)
         {
-            
+
             if (e.Action is AdaptiveOpenUrlAction openUrlAction)
             {
                 Process.Start(openUrlAction.Url);
@@ -210,7 +208,7 @@ namespace WpfVisualizer
             Renderer.HostConfig.SupportsInteractivity = false;
             var imageStream = Renderer.RenderToImage(_card, 480);
             Renderer.HostConfig.SupportsInteractivity = supportsInteractivity;
-            
+
             var path = Path.GetRandomFileName() + ".png";
             using (var fileStream = new FileStream(path, FileMode.Create))
             {
