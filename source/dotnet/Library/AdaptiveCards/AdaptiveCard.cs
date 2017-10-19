@@ -93,10 +93,6 @@ namespace AdaptiveCards
         [JsonProperty(Order = -7, NullValueHandling = NullValueHandling.Ignore)]
         public string FallbackText { get; set; }
 
-        public bool ShouldSerializeActions()
-        {
-            return Actions.Any();
-        }
 
         public string ToJson()
         {

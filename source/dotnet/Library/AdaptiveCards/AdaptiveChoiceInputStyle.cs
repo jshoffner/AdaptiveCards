@@ -7,13 +7,14 @@ namespace AdaptiveCards
     public enum AdaptiveChoiceInputStyle
     {
         /// <summary>
+        ///     choices are prefered to be compactly displayed. Example: ComboBox
+        /// </summary>
+        Compact,
+
+        /// <summary>
         ///     choices are prefered to be displayed for easy input. Example: Checkbox or Radio buttons
         /// </summary>
         Expanded,
 
-        /// <summary>
-        ///     choices are prefered to be compactly displayed. Example: ComboBox
-        /// </summary>
-        Compact
     }
 }

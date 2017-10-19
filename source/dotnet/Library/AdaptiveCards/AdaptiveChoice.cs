@@ -35,11 +35,6 @@ namespace AdaptiveCards
         [Obsolete("AdaptiveChoiceSetInput.Speak has been deprecated.  Use AdaptiveCard.Speak", false)]
         public string Speak { get; set; }
 
-        public bool ShouldSerializeIsSelected()
-        {
-#pragma warning disable CS0618 // Type or member is obsolete
-            return IsSelected;
-#pragma warning restore CS0618 // Type or member is obsolete
-        }
+
     }
 }

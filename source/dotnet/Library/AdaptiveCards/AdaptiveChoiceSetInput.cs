@@ -25,13 +25,12 @@ namespace AdaptiveCards
         /// <summary>
         ///     Style for choice
         /// </summary>
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public AdaptiveChoiceInputStyle Style { get; set; }
 
         /// <summary>
         ///     allow multiple choices to be selected (default false)
         /// </summary>
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        [JsonProperty(DefaultValueHandling = DefaultValueHandling.Ignore)]
         public bool IsMultiSelect { get; set; }
 
         /// <summary>
@@ -39,11 +38,5 @@ namespace AdaptiveCards
         /// </summary>
         [JsonRequired]
         public List<AdaptiveChoice> Choices { get; set; } = new List<AdaptiveChoice>();
-
-
-        public bool ShouldSerializeIsMultiSelect()
-        {
-            return IsMultiSelect;
-        }
     }
 }

@@ -29,5 +29,6 @@ namespace AdaptiveCards
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Width { get; set; }
+        // TODO: Width should be a type, with implicit string converter
     }
 }

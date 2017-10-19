@@ -17,10 +17,6 @@ namespace AdaptiveCards
         ///     The input must have a value for it to be part of a Submit or Http action
         /// </summary>
         public bool IsRequired { get; set; }
-
-        public bool ShouldSerializeIsRequired()
-        {
-            return IsRequired;
-        }
+        
     }
 }

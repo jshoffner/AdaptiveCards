@@ -21,7 +21,7 @@ namespace AdaptiveCards.Rendering.Wpf
             uiButton.SetBorderColor(styling.BackgroundColor, context);
             uiButton.SetThickness(context.Config.Actions.BorderThickness);
             uiButton.Style = context.GetStyle($"Adaptive.{action.Type}");
-
+           
             TextBlock uiTitle = new TextBlock()
             {
                 Text = action.Title,                
